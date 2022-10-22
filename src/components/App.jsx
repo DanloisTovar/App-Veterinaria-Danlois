@@ -1,14 +1,14 @@
 //* import librarys  and css:
 
 // ? import components:
-import Header from './components/Header';
-import Formulario from './components/Formulario';
-import ListadoPacientes from './components/ListadoPacientes';
+import Header from './Header';
+import Formulario from './Formulario';
+import ListadoPacientes from './ListadoPacientes';
 
 //!main component
 function App() {
     return (
-        <div className="App">
+        <div className="App container mx-auto mt-8">
             <Header />
             <Formulario />
             <ListadoPacientes />
