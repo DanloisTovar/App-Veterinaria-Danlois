@@ -1,7 +1,6 @@
-import React from 'react';
-
 // !importar hook:
 import { useState } from 'react';
+
 const Form = () => {
     // !Hooks para el state:
     const [nombre, setNombre] = useState('');
@@ -24,6 +23,8 @@ const Form = () => {
             console.log('todos los campos estan llenos');
             setError(false);
         }
+
+        setPaciente(nombre);
     };
 
     return (

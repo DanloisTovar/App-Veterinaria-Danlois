@@ -1,3 +1,6 @@
+// import useState:
+import { useState } from 'react';
+
 //* import librarys  and css:
 
 // ? import components:
@@ -7,11 +10,14 @@ import ListadoPacientes from './ListadoPacientes';
 
 //!main component
 function App() {
+    // !Hooks para el state:
+    const [pacientes, setPacientes] = useState([]);
+
     return (
         <div className="App container mx-auto mt-8">
             <Header />
             <div className="mt-12 md:flex">
-                <Formulario />
+                <Formulario setPacientes={setPacientes} />
                 <ListadoPacientes />
             </div>
         </div>
