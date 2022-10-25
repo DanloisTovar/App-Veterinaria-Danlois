@@ -10,9 +10,20 @@ const Form = () => {
     const [alta, setAlta] = useState('');
     const [sintomas, setSintomas] = useState('');
 
+    // Hook para validar errores:
+    const [error, setError] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('enviando');
+
+        // !validar formulario:
+        if ([nombre, propietario, correo, alta, sintomas].includes('')) {
+            console.log('hay un campo vacio');
+            setError(true);
+        } else {
+            console.log('todos los campos estan llenos');
+            setError(false);
+        }
     };
 
     return (
@@ -21,6 +32,15 @@ const Form = () => {
             className="bg-white shadow-lg rounded-md py-5 px-3 mb-5"
             onSubmit={handleSubmit}
         >
+            {/* mostar error */}
+            {error && (
+                <div>
+                    <p className="bg-red-600 text-white p-3 font-bold rounded-md uppercase text-center mb-5">
+                        ¡Todos los campos son obligatorios!
+                    </p>
+                </div>
+            )}
+
             {/* Nombre mascota: */}
             <div className="mb-5">
                 <label
