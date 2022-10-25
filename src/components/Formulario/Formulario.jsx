@@ -1,7 +1,10 @@
 // !importar formlario:
 import { React, useState } from 'react';
 
-function Formulario({ setPacientes }) {
+// !importar componentes:
+import ErrorFormulario from './ErrorFormulario';
+
+function Formulario({ pacientes, setPacientes }) {
     // crear hook:
     // !Hooks para el state:
     const [nombre, setNombre] = useState('');
@@ -9,6 +12,9 @@ function Formulario({ setPacientes }) {
     const [correo, setCorreo] = useState('');
     const [alta, setAlta] = useState('');
     const [sintomas, setSintomas] = useState('');
+
+    // Hook para validar errores:
+    const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,13 +26,27 @@ function Formulario({ setPacientes }) {
         } else {
             console.log('todos los campos estan llenos');
             setError(false);
+
+            // !crear un nuevo paciente:
+            const objetoPaciente = {
+                nombre,
+                propietario,
+                correo,
+                alta,
+                sintomas,
+            };
+
+            // agregar datos al prop de app formulario:
+            setPacientes([...pacientes, objetoPaciente]);
+
+            //    reiniiar formulario:
+            setNombre('');
+            setPropietario('');
+            setCorreo('');
+            setAlta('');
+            setSintomas('');
         }
-
-        setPacientes(nombre);
     };
-
-    // Hook para validar errores:
-    const [error, setError] = useState(false);
 
     return (
         <div className=" bg-indigo-400 md:w-1/2 sm:w-2/2 lg:w-2/5 text-justify m-2 p-5 rounded-md">
@@ -45,11 +65,9 @@ function Formulario({ setPacientes }) {
             >
                 {/* mostar error */}
                 {error && (
-                    <div>
-                        <p className="bg-red-600 text-white p-3 font-bold rounded-md uppercase text-center mb-5">
-                            ¡Todos los campos son obligatorios!
-                        </p>
-                    </div>
+                    <ErrorFormulario>
+                        <p>¡Todos los campos son obligatorios! </p>
+                    </ErrorFormulario>
                 )}
 
                 {/* Nombre mascota: */}
