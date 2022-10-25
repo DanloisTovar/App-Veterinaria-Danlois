@@ -1,10 +1,25 @@
 import React from 'react';
 
+// !importar hook:
+import { useState } from 'react';
 const Form = () => {
+    // !Hooks para el state:
+    const [nombre, setNombre] = useState('');
+    const [propietario, setPropietario] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [alta, setAlta] = useState('');
+    const [sintomas, setSintomas] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('enviando');
+    };
+
     return (
         <form
             action="#"
             className="bg-white shadow-lg rounded-md py-5 px-3 mb-5"
+            onSubmit={handleSubmit}
         >
             {/* Nombre mascota: */}
             <div className="mb-5">
@@ -19,6 +34,8 @@ const Form = () => {
                     placeholder="Nombre Mascota"
                     className="border-2 w-full p-2 rounded-md mt-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                     id="mascota"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
                 />
             </div>
             {/* Nombre propietario: */}
@@ -33,7 +50,9 @@ const Form = () => {
                     type="text"
                     placeholder="Nombre Propietario"
                     className="border-2 w-full p-2 rounded-md mt-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-400"
-                    id="mascota"
+                    id="propietario"
+                    value={propietario}
+                    onChange={(e) => setPropietario(e.target.value)}
                 />
             </div>
 
@@ -50,6 +69,8 @@ const Form = () => {
                     placeholder="Correo Electronico"
                     className="border-2 w-full p-2 rounded-md mt-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                     id="correo"
+                    value={correo}
+                    onChange={(e) => setCorreo(e.target.value)}
                 />
             </div>
 
@@ -65,6 +86,8 @@ const Form = () => {
                     type="date"
                     className="border-2 w-full p-2 rounded-md mt-2 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-indigo-400"
                     id="alta"
+                    value={alta}
+                    onChange={(e) => setAlta(e.target.value)}
                 />
             </div>
 
@@ -80,6 +103,8 @@ const Form = () => {
                     id="sintomas"
                     className="focus:outline-none focus:ring-1 focus:ring-indigo-400 border-2 w-full p-2 rounded-md mt-2 placeholder-gray-400"
                     placeholder="Indique los sintomas"
+                    value={sintomas}
+                    onChange={(e) => setSintomas(e.target.value)}
                 />
             </div>
 
