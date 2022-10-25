@@ -16,6 +16,13 @@ function Formulario({ pacientes, setPacientes }) {
     // Hook para validar errores:
     const [error, setError] = useState(false);
 
+    // crear id:
+    const genrerarId = () => {
+        const ramdon = Math.random().toString(36).substr(2, 9);
+        const fecha = Date.now().toString(36);
+        return ramdon + fecha;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -34,8 +41,10 @@ function Formulario({ pacientes, setPacientes }) {
                 correo,
                 alta,
                 sintomas,
+                id: genrerarId(),
             };
 
+            console.log(objetoPaciente);
             // agregar datos al prop de app formulario:
             setPacientes([...pacientes, objetoPaciente]);
 
@@ -66,7 +75,7 @@ function Formulario({ pacientes, setPacientes }) {
                 {/* mostar error */}
                 {error && (
                     <ErrorFormulario>
-                        <p>¡Todos los campos son obligatorios! </p>
+                        Todos los campos son obligatorios!
                     </ErrorFormulario>
                 )}
 

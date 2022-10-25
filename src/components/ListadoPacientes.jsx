@@ -1,7 +1,8 @@
 import React from 'react';
 import Paciente from './Paciente';
 
-const ListadoPacientes = () => {
+const ListadoPacientes = ({ pacientes }) => {
+    console.log(pacientes);
     return (
         <div className=" bg-indigo-100 md:w-1/2 sm:w-2/2 lg:w-3/5 text-justify m-2 p-5 md:h-screen md:overflow-y-scroll rounded-xl">
             <h2 className="font-black text-3xl text-center">
@@ -14,13 +15,10 @@ const ListadoPacientes = () => {
                     Pacientes y Citas
                 </span>
             </p>
-
-            <Paciente />
-            <Paciente />
-            <Paciente />
-            <Paciente />
-            <Paciente />
-            <Paciente />
+            {pacientes.map((paciente) => {
+                return <Paciente key={paciente.id} paciente={paciente} />;
+            })}
+            {/* <Paciente /> */}
         </div>
     );
 };
