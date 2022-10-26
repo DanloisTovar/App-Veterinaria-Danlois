@@ -1,8 +1,13 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import Paciente from './Paciente';
 
-const ListadoPacientes = ({ pacientes }) => {
-    console.log(pacientes.length);
+const ListadoPacientes = ({ pacientes, setPaciente }) => {
+    // verifica cambio en pacientes:
+    useEffect(() => {
+        pacientes.length > 0 &&
+            console.log('Nuevo Paciente cargado', pacientes);
+    }, [pacientes]);
+
     return (
         <div className=" bg-indigo-100 md:w-1/2 sm:w-2/2 lg:w-3/5 text-justify m-2 p-5 md:h-screen md:overflow-y-scroll rounded-xl">
             {pacientes && pacientes.length > 0 ? (
@@ -19,7 +24,11 @@ const ListadoPacientes = ({ pacientes }) => {
                     </p>
                     {pacientes.map((paciente) => {
                         return (
-                            <Paciente key={paciente.id} paciente={paciente} />
+                            <Paciente
+                                key={paciente.id}
+                                paciente={paciente}
+                                setPaciente={setPaciente}
+                            />
                         );
                     })}
                     {/* <Paciente /> */}

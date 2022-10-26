@@ -1,10 +1,20 @@
 // !importar formlario:
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 
 // !importar componentes:
 import ErrorFormulario from './ErrorFormulario';
 
-function Formulario({ pacientes, setPacientes }) {
+function Formulario({ pacientes, setPacientes, paciente }) {
+    // verifica cada vez que exista un cambio en paciente:
+    useEffect(() => {
+        if (Object.keys(paciente).length > 0) {
+            setNombre(paciente.nombre);
+            setPropietario(paciente.propietario);
+            setCorreo(paciente.correo);
+            setAlta(paciente.alta);
+            setSintomas(paciente.sintomas);
+        }
+    }, [paciente]);
     // crear hook:
     // !Hooks para el state:
     const [nombre, setNombre] = useState('');
