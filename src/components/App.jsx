@@ -1,5 +1,5 @@
 // import useState:
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //* import librarys  and css:
 
@@ -18,6 +18,30 @@ function App() {
     // !este estate se pasa al compomente listado pacientes y al componente:
     const [paciente, setPaciente] = useState({});
 
+    // *persistencia de datos en el local storage:
+    useEffect(() => {
+        const obtenerLS = () => {
+            const pacientesLS =
+                JSON.parse(localStorage.getItem('pacientes')) ?? [];
+            setPacientes(pacientesLS);
+        };
+        obtenerLS();
+    }, []);
+
+    // ! Agregar datos al local storage:
+    useEffect(() => {
+        localStorage.setItem('pacientes', JSON.stringify(pacientes));
+    }, [pacientes]);
+
+    // !! eliminar paciente:
+    const eliminarPaciente = (id) => {
+        const pacientesFiltrados = pacientes.filter((paciente) => {
+            return paciente.id !== id;
+        });
+        console.log(pacientesFiltrados);
+        setPacientes(pacientesFiltrados);
+    };
+
     return (
         <div className="App container mx-auto mt-8">
             <Header />
@@ -32,6 +56,7 @@ function App() {
                 <ListadoPacientes
                     pacientes={pacientes}
                     setPaciente={setPaciente}
+                    eliminarPaciente={eliminarPaciente}
                 />
             </div>
         </div>
