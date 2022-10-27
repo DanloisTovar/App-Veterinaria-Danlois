@@ -5,7 +5,7 @@ function Header() {
         <>
             <h1 className="font-black text-5xl text-center md:w-1/2 mx-auto">
                 Seguimiento de pacientes{' '}
-                <span className=" text-indigo-600">Veterinaria DAN</span>
+                <span className=" text-indigo-600">Veterinaria DANLOIS</span>
             </h1>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
